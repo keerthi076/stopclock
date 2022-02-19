@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stopwatch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+</head>
+<body>
+	<div class="container">
+		<h1>Stopwatch</h1>
+		<div class="clock">
+	<p id="demo"><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></p></div>
+	<button onclick="stopwatch()"><i class="fa fa-play" style="font-size:20px"></i>
+</button>
+	<button onclick="stop()">
+<i class="fa fa-pause" style="font-size:20px"></i></button>
+	<button onclick="restart()"><i style='font-size:20px' class='fa'>&#xf01e;</i></button>
+</div>
+
+	<script>
+var sec=1;
+var min=1;
+var hrs=1;
+var start;
+function restart(){
+	window.clearInterval(start);
+	$("#seconds").html("00");
+	$("#minutes").html("00");
+	$("#hours").html("00");
+	min=1;
+	sec=1;
+	hrs=1;
+}
+		function stopwatch(){
+			
+	 start=setInterval(function(){if(sec==60){
+	 	    if(min<=9){
+	 	    	document.getElementById("minutes").innerHTML=`0${min++}`;
+	 	    }else{
+					$("#minutes").html(min++);}
+				sec=0;
+				$("#seconds").html(sec++);
+            }
+            
+            if(min==61){
+            	if(hrs<=9){
+            		document.getElementById("hours").innerHTML=`0${hrs++}`;
+            	}else{
+            	$("#hours").html(hrs++);}
+                min=0;
+            	sec=0;
+            	document.getElementById("minutes").innerHTML=`0${min}`;
+            	$("#seconds").html(sec++);
+            }
+            if(sec<=9){
+            	document.getElementById("seconds").innerHTML=`0${sec++}`;
+            }
+            else{
+		  $("#seconds").html(sec++);}
+		},1000);	}
+
+		function stop(){
+			window.clearInterval(start);
+			
+			$("minutes").html(min);
+			
+			$("seconds").html(sec);
+			
+			$("hours").html(hrs);
+		}
+</script>
+<style>
+
+.container{
+	width:100%;
+	text-align:center;
+    margin:auto;
+    margin-top:150px;
+
+}
+#demo{
+	margin-top:45px;
+	text-align:center;
+	font-size:40px;
+}
+.clock{
+	margin-top:250px;
+	border-style:none;
+	border-radius:50%;
+	text-align:center;
+	border-width:1px;
+	padding:25px;
+	width:135px;
+	height:130px;
+	margin:auto;
+	align-items:center;
+	background-color:#dddddd;
+
+
+
+}
+button{
+	border-radius:25px;
+	padding:10px;
+	border-width:1px;
+	border-style:style;
+	background-color:white;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	margin-top:20px;
+}
+button:hover{
+	background-color:#dddddd;
+}
+  </body>
+  </html>
